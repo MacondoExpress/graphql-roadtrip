@@ -1,10 +1,18 @@
 type Movie {
-  title: String! @unique
-  alternativeTitles: [String]!
-  nullableTitles: [String]
-  correctAlternativeTitles: [String!]!
+    title: String! @unique
+    alternativeTitles: [String]!
+    nullableTitles: [String]
+    correctAlternativeTitles: [String!]!
+    title: String!
+    actors: [Actor!]! @relationship(type: "ACTED_IN", direction: IN, queryDirection: DEFAULT_DIRECTED)
 }
 
 type Actor @node {
-  name: String! @private
+    name: String! @private
+    title: String! @unique
+}
+
+type Product @fulltext(indexes: [{ indexName: "ProductName", fields: ["name"] }, { fields: ["color"] }]) @node {
+    name: String!
+    color: Color! @relationship(type: "OF_COLOR", direction: OUT)
 }
