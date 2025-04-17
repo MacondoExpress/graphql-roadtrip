@@ -9,8 +9,9 @@ import { requireNodeDirective } from "./rules/required-node-directive";
 import { singleElementRelationships } from "./rules/single-element-relationships";
 
 function main() {
-    const typedefs = fs.readFileSync("typedef.graphql", { encoding: "utf-8" });
-    console.log(typedefs);
+    const args = process.argv.slice(2);
+
+    const typedefs = fs.readFileSync(args[0], { encoding: "utf-8" });
     const ast = parse(typedefs);
     const rules = [
         removeUniqueDirective,
@@ -23,9 +24,12 @@ function main() {
     ];
 
     const result = migrate(ast, rules);
-    console.log("-----");
     const updatedTypedefs = print(result);
-    console.log(updatedTypedefs);
+    if (args[1] === "-o") {
+        fs.writeFileSync(args[2], updatedTypedefs);
+    } else {
+        console.log(updatedTypedefs);
+    }
 }
 
 function migrate(ast: DocumentNode, rules: Array<ASTVisitor>): DocumentNode {
