@@ -7,3 +7,8 @@ type Actor @node {
     title: String! @unique
     name: String! @private
 }
+
+type Product @fulltext(indexes: [{ indexName: "ProductName", fields: ["name"] }, { fields: ["color"] }]) @node {
+    name: String!
+    color: Color! @relationship(type: "OF_COLOR", direction: OUT)
+}

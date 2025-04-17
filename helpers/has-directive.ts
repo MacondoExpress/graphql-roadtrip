@@ -1,12 +1,6 @@
-import { DirectiveNode, FieldDefinitionNode } from "graphql";
+import { DirectiveNode } from "graphql";
+import { getDirective } from "./get-directive";
 
-export function hasDirective(
-  directives: DirectiveNode[],
-  directiveName: string
-): boolean {
-  return Boolean(
-    directives.find((directive) => {
-      return directive.name.value === directiveName;
-    })
-  );
+export function hasDirective(directives: DirectiveNode[], directiveName: string): boolean {
+    return Boolean(getDirective(directives, directiveName));
 }
