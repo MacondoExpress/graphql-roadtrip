@@ -8,7 +8,6 @@ type Movie {
     alternativeTitles: [String]!
     nullableTitles: [String]
     correctAlternativeTitles: [String!]!
-    title: String!
     mainActor: Actor @relationship(type: "MAIN_ACTOR", direction: OUT)
     actors: [Actor!]! @relationship(type: "ACTED_IN", direction: IN, queryDirection: DEFAULT_DIRECTED)
 }
@@ -19,7 +18,7 @@ type Actor @node {
     favMovie: Movie @relationship(type: "FAV", direction: OUT)
 }
 
-type Product @fulltext(indexes: [{ indexName: "ProductName", fields: ["name"] }, { fields: ["color"] }]) @node {
+type Product @fulltext(indexes: [{ indexName: "ProductName", fields: ["name"] }, { fields: ["id"] }]) @node {
     name: String!
-    color: [Color!]! @relationship(type: "OF_COLOR", direction: OUT)
+    id: ID!
 }
