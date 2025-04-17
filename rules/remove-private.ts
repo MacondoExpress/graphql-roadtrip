@@ -1,9 +1,9 @@
 import { ASTVisitor, FieldDefinitionNode } from "graphql";
 import { removeDirective } from "../helpers/remove-directive";
 
-export const removeUniqueDirective: ASTVisitor = {
+export const removePrivateDirective: ASTVisitor = {
   FieldDefinition(fieldDefinition: FieldDefinitionNode) {
-    return removeDirective(fieldDefinition, "unique");
+    return removeDirective(fieldDefinition, "private");
   },
 };
 

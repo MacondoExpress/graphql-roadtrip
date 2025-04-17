@@ -9,12 +9,17 @@ import {
   print,
   visit,
 } from "graphql";
+import { removePrivateDirective } from "./rules/remove-private";
 
 function main() {
   const typedefs = fs.readFileSync("typedef.graphql", { encoding: "utf-8" });
   console.log(typedefs);
   const ast = parse(typedefs);
-  const rules = [removeUniqueDirective, requireNodeDirective];
+  const rules = [
+    removeUniqueDirective,
+    requireNodeDirective,
+    removePrivateDirective,
+  ];
 
   const result = migrate(ast, rules);
   console.log("-----");
