@@ -5,7 +5,10 @@ import { isListType } from "../helpers/is-list-type";
 
 export const singleElementRelationships: ASTVisitor = {
     FieldDefinition(fieldDefinition: FieldDefinitionNode) {
-        if (hasDirective([...(fieldDefinition.directives ?? [])], "relationship")) {
+        if (
+            hasDirective([...(fieldDefinition.directives ?? [])], "relationship") ||
+            hasDirective([...(fieldDefinition.directives ?? [])], "declareRelationship")
+        ) {
             if (!isListType(fieldDefinition.type)) {
                 return {
                     ...fieldDefinition,

@@ -1,9 +1,15 @@
+interface Show {
+    title: String!
+    mainActor: Actor @declareRelationship
+}
+
 type Movie {
     title: String! @unique
     alternativeTitles: [String]!
     nullableTitles: [String]
     correctAlternativeTitles: [String!]!
     title: String!
+    mainActor: Actor @relationship(type: "MAIN_ACTOR", direction: OUT)
     actors: [Actor!]! @relationship(type: "ACTED_IN", direction: IN, queryDirection: DEFAULT_DIRECTED)
 }
 
