@@ -1,0 +1,23 @@
+{
+    "name": "graphql-roadtrip",
+    "version": "0.0.1",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "ts-node index.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MacondoExpress/graphql-roadtrip.git"
+    },
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/MacondoExpress/graphql-roadtrip/issues"
+    },
+    "homepage": "https://github.com/MacondoExpress/graphql-roadtrip#readme",
+    "description": "",
+    "dependencies": {
+        "typescript": "^5.8.3"
+    }
+}
