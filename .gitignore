@@ -86,3 +86,4 @@ tsconfig.*.tsbuildinfo.gz
 
 .history
 
+out.graphql
