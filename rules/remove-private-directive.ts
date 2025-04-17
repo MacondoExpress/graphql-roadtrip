@@ -6,4 +6,3 @@ export const removePrivateDirective: ASTVisitor = {
     return removeDirective(fieldDefinition, "private");
   },
 };
-

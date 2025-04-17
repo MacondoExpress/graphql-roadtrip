@@ -9,7 +9,7 @@ import {
   print,
   visit,
 } from "graphql";
-import { removePrivateDirective } from "./rules/remove-private";
+import { removePrivateDirective } from "./rules/remove-private-directive";
 
 function main() {
   const typedefs = fs.readFileSync("typedef.graphql", { encoding: "utf-8" });
