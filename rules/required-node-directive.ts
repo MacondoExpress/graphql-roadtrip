@@ -1,9 +1,5 @@
-import {
-  ASTVisitor,
-  DirectiveNode,
-  Kind,
-  ObjectTypeDefinitionNode,
-} from "graphql";
+import { ASTVisitor, Kind, ObjectTypeDefinitionNode } from "graphql";
+import { hasDirective } from "../helpers/has-directive";
 
 const NodeDirective = {
   kind: Kind.DIRECTIVE,
@@ -16,7 +12,7 @@ const NodeDirective = {
 export const requireNodeDirective: ASTVisitor = {
   ObjectTypeDefinition(node: ObjectTypeDefinitionNode) {
     const nodeDirectives = [...(node.directives ?? [])];
-    if (!hasNodeDirective(nodeDirectives)) {
+    if (!hasDirective(nodeDirectives, "node")) {
       nodeDirectives.push(NodeDirective);
     }
 
@@ -27,11 +23,3 @@ export const requireNodeDirective: ASTVisitor = {
     return newObject;
   },
 };
-
-function hasNodeDirective(directives: DirectiveNode[]): boolean {
-  return Boolean(
-    directives.find((directive) => {
-      return directive.name.value === "node";
-    })
-  );
-}
