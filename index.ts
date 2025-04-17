@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { program } from "commander";
 import * as fs from "fs";
 import { ASTVisitor, DocumentNode, parse, print, visit } from "graphql";
@@ -23,10 +25,6 @@ function main() {
     program.parse();
     const options = program.opts();
     const [typedefFile] = program.args;
-
-    if (!typedefFile) {
-        throw new Error("Please, specify file");
-    }
 
     const typedefs = fs.readFileSync(typedefFile, { encoding: "utf-8" });
     const ast = parse(typedefs);
