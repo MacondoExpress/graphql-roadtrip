@@ -1,7 +1,7 @@
 type Movie {
-    title: String!
+  title: String!
 }
 
 type Actor @node {
-    title: String!
+  title: String! @unique
 }

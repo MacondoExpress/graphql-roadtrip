@@ -1,20 +1,32 @@
 import * as fs from "fs";
 import { requireNodeDirective } from "./rules/required-node-directive";
-import { DocumentNode, parse, print, visit } from "graphql";
+import { removeUniqueDirective } from "./rules/remove-unique-directive";
+import {
+  ASTVisitFn,
+  ASTVisitor,
+  DocumentNode,
+  parse,
+  print,
+  visit,
+} from "graphql";
 
 function main() {
   const typedefs = fs.readFileSync("typedef.graphql", { encoding: "utf-8" });
   console.log(typedefs);
   const ast = parse(typedefs);
-  const result = migrate(ast);
+  const rules = [removeUniqueDirective, requireNodeDirective];
+
+  const result = migrate(ast, rules);
   console.log("-----");
   const updatedTypedefs = print(result);
   console.log(updatedTypedefs);
 }
 
-function migrate(ast: DocumentNode): DocumentNode {
-  const result = visit(ast, requireNodeDirective);
-  return result as DocumentNode;
+function migrate(ast: DocumentNode, rules: Array<ASTVisitor>): DocumentNode {
+  return rules.reduce((acc, rule) => {
+    const intermediate = visit(acc, rule);
+    return intermediate;
+  }, ast);
 }
 
 main();
