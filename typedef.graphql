@@ -1,8 +1,9 @@
 type Movie {
-  title: String!
+    title: String!
+    actors: [Actor!]! @relationship(type: "ACTED_IN", direction: IN, queryDirection: DEFAULT_DIRECTED)
 }
 
 type Actor @node {
-  title: String! @unique
-  name: String! @private
+    title: String! @unique
+    name: String! @private
 }
