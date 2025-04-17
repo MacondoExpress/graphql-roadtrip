@@ -1,4 +1,5 @@
 import { ASTVisitor, FieldDefinitionNode, Kind, NonNullTypeNode, TypeNode } from "graphql";
+import { isListType } from "../helpers/is-list-type";
 
 export const makeListFieldNonNullable: ASTVisitor = {
     FieldDefinition(fieldDefinition: FieldDefinitionNode) {
@@ -37,11 +38,4 @@ function convertListElementTypeToNonNull(typeNode: TypeNode): TypeNode {
     }
 
     return typeNode;
-}
-
-function isListType(type: any): boolean {
-    if (type.kind === Kind.NON_NULL_TYPE) {
-        return isListType(type.type);
-    }
-    return type.kind === Kind.LIST_TYPE;
 }

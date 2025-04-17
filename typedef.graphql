@@ -10,9 +10,10 @@ type Movie {
 type Actor @node {
     name: String! @private
     title: String! @unique
+    favMovie: Movie @relationship(type: "FAV", direction: OUT)
 }
 
 type Product @fulltext(indexes: [{ indexName: "ProductName", fields: ["name"] }, { fields: ["color"] }]) @node {
     name: String!
-    color: Color! @relationship(type: "OF_COLOR", direction: OUT)
+    color: [Color!]! @relationship(type: "OF_COLOR", direction: OUT)
 }
