@@ -7,6 +7,7 @@ import { removePrivateDirective } from "./rules/remove-private-directive";
 import { removeUniqueDirective } from "./rules/remove-unique-directive";
 import { requireNodeDirective } from "./rules/required-node-directive";
 import { singleElementRelationships } from "./rules/single-element-relationships";
+import { removeConnectOrCreateFromRelationshipDirective } from "./rules/remove-connect-or-create-from-relationship-directive";
 
 function main() {
     console.log(`
@@ -43,6 +44,7 @@ function main() {
         fulltextRequiredParameter,
         makeListFieldNonNullable,
         singleElementRelationships,
+        removeConnectOrCreateFromRelationshipDirective,
     ];
 
     const result = migrate(ast, rules);

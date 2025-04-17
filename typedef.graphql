@@ -9,7 +9,13 @@ type Movie {
     nullableTitles: [String]
     correctAlternativeTitles: [String!]!
     mainActor: Actor @relationship(type: "MAIN_ACTOR", direction: OUT)
-    actors: [Actor!]! @relationship(type: "ACTED_IN", direction: IN, queryDirection: DEFAULT_DIRECTED)
+    actors: [Actor!]!
+        @relationship(
+            type: "ACTED_IN"
+            direction: IN
+            queryDirection: DEFAULT_DIRECTED
+            nestedOperations: [CREATE, CONNECT_OR_CREATE]
+        )
 }
 
 type Actor @node {
