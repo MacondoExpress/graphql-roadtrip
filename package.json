@@ -18,6 +18,10 @@
     "homepage": "https://github.com/MacondoExpress/graphql-roadtrip#readme",
     "description": "",
     "dependencies": {
+        "graphql": "^16.10.0",
         "typescript": "^5.8.3"
+    },
+    "devDependencies": {
+        "@types/node": "^22.14.1"
     }
 }

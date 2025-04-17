@@ -1,3 +1,7 @@
 type Movie {
     title: String!
 }
+
+type Actor @node {
+    title: String!
+}
