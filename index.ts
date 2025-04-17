@@ -10,6 +10,7 @@ import {
   visit,
 } from "graphql";
 import { removePrivateDirective } from "./rules/remove-private-directive";
+import { makeListFieldNonNullable } from "./rules/make-list-field-non-nullable";
 
 function main() {
   const typedefs = fs.readFileSync("typedef.graphql", { encoding: "utf-8" });
@@ -19,6 +20,7 @@ function main() {
     removeUniqueDirective,
     requireNodeDirective,
     removePrivateDirective,
+    makeListFieldNonNullable,
   ];
 
   const result = migrate(ast, rules);

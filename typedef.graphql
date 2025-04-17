@@ -1,8 +1,10 @@
 type Movie {
-  title: String!
+  title: String! @unique
+  alternativeTitles: [String]!
+  nullableTitles: [String]
+  correctAlternativeTitles: [String!]!
 }
 
 type Actor @node {
-  title: String! @unique
   name: String! @private
 }
